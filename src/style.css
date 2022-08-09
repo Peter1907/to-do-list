@@ -64,7 +64,7 @@ body {
   margin-left: auto;
 }
 
-.dots:after {
+.dots::after {
   content: '\2807';
   font-size: 25px;
   color: rgb(117, 117, 117);
