@@ -19,6 +19,20 @@ class Item {
   }
 }
 
+const storeData = () => {
+  localStorage.setItem('ToDoItems', JSON.stringify(TodoItems));
+};
+
+const remove = (num) => {
+  TodoItems.splice(num, 1);
+  storeData();
+  for (let i = 0; i < TodoItems.length; i += 1) {
+    const data = TodoItems[i];
+    data.index = i;
+  }
+  storeData();
+};
+
 const modify = () => {
   const items = document.querySelectorAll('#list span');
   for (let i = 0; i < items.length; i += 1) {
@@ -39,8 +53,8 @@ const modify = () => {
         rmIcon.parentElement.remove();
       });
     });
+    const data = TodoItems[i];
     items[i].addEventListener('keydown', () => {
-      const data = TodoItems[i];
       data.description = items[i].innerHTML;
       storeData();
     });
@@ -55,10 +69,6 @@ const modify = () => {
   });
 };
 
-const storeData = () => {
-  localStorage.setItem('ToDoItems', JSON.stringify(TodoItems));
-};
-
 const add = (description) => {
   const item = new Item(description);
   TodoItems.push(item);
@@ -66,16 +76,6 @@ const add = (description) => {
   display(item.index);
   modify();
   TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
-};
-
-const remove = (num) => {
-  TodoItems.splice(num, 1);
-  storeData();
-  for (let i = 0; i < TodoItems.length; i += 1) {
-    const data = TodoItems[i];
-    data.index = i;
-  }
-  storeData();
 };
 
 export {
