@@ -1,5 +1,6 @@
-let TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
+var TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
 
+const list = document.getElementById('list');
 const display = (i) => {
   const item = document.createElement('li');
   const data = TodoItems[i];
@@ -9,7 +10,7 @@ const display = (i) => {
   list.appendChild(item);
 };
 
-class item {
+class Item {
   constructor(description) {
     this.description = description;
     this.completed = false;
@@ -19,16 +20,16 @@ class item {
 
 const storeData = () => {
   localStorage.setItem('ToDoItems', JSON.stringify(TodoItems));
-}
+};
 
 const add = (description) => {
-  let Item = new item(description);
-  TodoItems.push(Item);
+  const item = new Item(description);
+  TodoItems.push(item);
   storeData();
-  display(Item.index);
+  display(item.index);
   modify();
   TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
-}
+};
 
 const remove = (num) => {
   TodoItems.splice(num, 1);
@@ -38,10 +39,10 @@ const remove = (num) => {
     data.index = i;
   }
   storeData();
-}
+};
 
 const modify = () => {
-  let items = document.querySelectorAll('#list span');
+  const items = document.querySelectorAll('#list span');
   for (let i = 0; i < items.length; i += 1) {
     items[i].addEventListener('click', (event) => {
       event.stopPropagation();
@@ -58,21 +59,23 @@ const modify = () => {
       rmIcon.addEventListener('click', () => {
         remove(i);
         rmIcon.parentElement.remove();
-      })
-    })
+      });
+    });
     items[i].addEventListener('keydown', () => {
       TodoItems[i].description = items[i].innerHTML;
       storeData();
-    })
+    });
   }
   window.addEventListener('click', () => {
     for (let i = 0; i < items.length; i += 1) {
-        items[i].parentElement.style.background = 'none';
-        const rmIcon = items[i].nextElementSibling;
-        rmIcon.innerHTML = '&#8942';
-        rmIcon.style.cursor = 'move';
-      }
-  })
-}
+      items[i].parentElement.style.background = 'none';
+      const rmIcon = items[i].nextElementSibling;
+      rmIcon.innerHTML = '&#8942';
+      rmIcon.style.cursor = 'move';
+    }
+  });
+};
 
-export { item, display, storeData, add, remove, modify, TodoItems };
+export {
+  display, storeData, add, remove, modify, TodoItems
+};

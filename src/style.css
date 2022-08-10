@@ -78,9 +78,6 @@ form {
 
 .dots {
   margin-left: auto;
-}
-
-.dots {
   color: rgb(117, 117, 117);
   font-size: 22px;
   cursor: move;
