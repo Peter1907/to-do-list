@@ -1,9 +1,9 @@
 import './style.css';
 import {
-  display, add, modify, TodoItems
+  display, add, modify, TodoItemsV2,
 } from './functions.js';
 
-for (let i = 0; i < TodoItems.length; i += 1) {
+for (let i = 0; i < TodoItemsV2.length; i += 1) {
   display(i);
 }
 

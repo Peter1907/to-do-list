@@ -1,4 +1,5 @@
-var TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
+let TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
+const TodoItemsV2 = TodoItems;
 
 const list = document.getElementById('list');
 const display = (i) => {
@@ -17,6 +18,42 @@ class Item {
     this.index = TodoItems.length;
   }
 }
+
+const modify = () => {
+  const items = document.querySelectorAll('#list span');
+  for (let i = 0; i < items.length; i += 1) {
+    items[i].addEventListener('click', (event) => {
+      event.stopPropagation();
+      for (let i = 0; i < items.length; i += 1) {
+        items[i].parentElement.style.background = 'none';
+        const rmIcon = items[i].nextElementSibling;
+        rmIcon.innerHTML = '&#8942';
+        rmIcon.style.cursor = 'move';
+      }
+      items[i].parentElement.style.backgroundColor = 'rgb(255, 255, 181)';
+      const rmIcon = items[i].nextElementSibling;
+      rmIcon.innerHTML = '&#x1F5D1';
+      rmIcon.style.cursor = 'pointer';
+      rmIcon.addEventListener('click', () => {
+        remove(i);
+        rmIcon.parentElement.remove();
+      });
+    });
+    items[i].addEventListener('keydown', () => {
+      const data = TodoItems[i];
+      data.description = items[i].innerHTML;
+      storeData();
+    });
+  }
+  window.addEventListener('click', () => {
+    for (let i = 0; i < items.length; i += 1) {
+      items[i].parentElement.style.background = 'none';
+      const rmIcon = items[i].nextElementSibling;
+      rmIcon.innerHTML = '&#8942';
+      rmIcon.style.cursor = 'move';
+    }
+  });
+};
 
 const storeData = () => {
   localStorage.setItem('ToDoItems', JSON.stringify(TodoItems));
@@ -41,41 +78,6 @@ const remove = (num) => {
   storeData();
 };
 
-const modify = () => {
-  const items = document.querySelectorAll('#list span');
-  for (let i = 0; i < items.length; i += 1) {
-    items[i].addEventListener('click', (event) => {
-      event.stopPropagation();
-      for (let i = 0; i < items.length; i += 1) {
-        items[i].parentElement.style.background = 'none';
-        const rmIcon = items[i].nextElementSibling;
-        rmIcon.innerHTML = '&#8942';
-        rmIcon.style.cursor = 'move';
-      }
-      items[i].parentElement.style.backgroundColor = 'rgb(255, 255, 181)';
-      const rmIcon = items[i].nextElementSibling;
-      rmIcon.innerHTML = '&#x1F5D1';
-      rmIcon.style.cursor = 'pointer';
-      rmIcon.addEventListener('click', () => {
-        remove(i);
-        rmIcon.parentElement.remove();
-      });
-    });
-    items[i].addEventListener('keydown', () => {
-      TodoItems[i].description = items[i].innerHTML;
-      storeData();
-    });
-  }
-  window.addEventListener('click', () => {
-    for (let i = 0; i < items.length; i += 1) {
-      items[i].parentElement.style.background = 'none';
-      const rmIcon = items[i].nextElementSibling;
-      rmIcon.innerHTML = '&#8942';
-      rmIcon.style.cursor = 'move';
-    }
-  });
-};
-
 export {
-  display, storeData, add, remove, modify, TodoItems
+  display, storeData, add, remove, modify, TodoItemsV2,
 };
