@@ -1,26 +1,17 @@
 import './style.css';
-
-const TodoItems = [
-  {
-    description: 'wash the dishes',
-    completed: false,
-    index: 1,
-  }, {
-    description: 'complete To Do list project',
-    completed: false,
-    index: 2,
-  },
-];
+import { item, display, storeData, add, remove, modify, TodoItems } from './functions.js';
 
 const list = document.getElementById('list');
-const display = (i) => {
-  const item = document.createElement('li');
-  const data = TodoItems[i];
-  item.innerHTML = `<input type="checkbox" id="item${data.index}" value="${data.completed}">
-  <label for="item${data.index}">${data.description}</label><br>
-  <div class="dots"></div>`;
-  list.appendChild(item);
-};
 for (let i = 0; i < TodoItems.length; i += 1) {
   display(i);
-}
+};
+
+const input = document.getElementById('add');
+const submit = document.getElementById('submit');
+submit.addEventListener('click', () => {
+  let description = input.value;
+  add(description);
+  input.value = '';
+})
+
+modify();

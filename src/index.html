@@ -11,10 +11,13 @@
   <body>
     <section class="list-box">
       <h2>Today's To Do</h2>
-      <input type="text" placeholder="Add to your list" id="add">
+      <form action="#">
+        <input type="text" placeholder="Add to your list" id="add" required>
+        <input type="submit" value="&#x2936" id="submit">
+      </form>
       <ul id="list"></ul>
       <p>Clear all completed</p>
     </section>
-   <script src="main.js"></script>
+   <script type="module" src="main.js"></script>
   </body>
 </html>

@@ -43,7 +43,7 @@ body {
 }
 
 #list li {
-  padding: 15px;
+  padding: 0 15px;
   display: flex;
   gap: 10px;
   font-size: 16px;
@@ -52,11 +52,27 @@ body {
   align-items: center;
 }
 
+#list span {
+  padding: 15px 0;
+}
+
+form {
+  display: flex;
+  border-bottom: 1px solid rgb(202, 202, 202);
+  justify-content: space-between;
+  padding: 15px;
+}
+
+#submit {
+  border: none;
+  background: none;
+  font-size: 22px;
+  color: rgb(117, 117, 117);
+}
+
 #add {
   font-size: 16px;
   border: none;
-  border-bottom: 1px solid rgb(202, 202, 202);
-  padding: 15px;
   font-style: italic;
 }
 
@@ -64,8 +80,8 @@ body {
   margin-left: auto;
 }
 
-.dots::after {
-  content: '\2807';
-  font-size: 25px;
+.dots {
   color: rgb(117, 117, 117);
+  font-size: 22px;
+  cursor: move;
 }
