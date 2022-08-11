@@ -48,12 +48,13 @@ body {
   gap: 10px;
   font-size: 16px;
   border-bottom: 1px solid rgb(202, 202, 202);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
 }
 
 #list span {
   padding: 15px 0;
+  width: 100%;
 }
 
 form {
@@ -71,6 +72,7 @@ form {
 }
 
 #add {
+  width: 100%;
   font-size: 16px;
   border: none;
   font-style: italic;
