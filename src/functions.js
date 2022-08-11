@@ -28,7 +28,7 @@ const storeData = () => {
 const removeItem = () => {
   const rmIcons = document.querySelectorAll('.element div');
   rmIcons.forEach((ele, id) => {
-    if (ele.className == 'bin') {
+    if (ele.className === 'bin') {
       ele.addEventListener('click', () => {
         ele.parentElement.remove();
         TodoItems.splice(id, 1);
@@ -37,9 +37,9 @@ const removeItem = () => {
           data.index = i + 1;
         }
         storeData();
-      })
+      });
     }
-  })
+  });
 };
 
 const modify = (num) => {
@@ -66,8 +66,8 @@ const modify = (num) => {
       const data = TodoItems[id];
       data.description = e.target.innerHTML;
       storeData();
-    })
-  })
+    });
+  });
   window.addEventListener('click', () => {
     for (let i = 0; i < items.length; i += 1) {
       items[i].parentElement.style.background = 'none';
