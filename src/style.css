@@ -43,29 +43,44 @@ body {
 }
 
 #list li {
-  padding: 15px;
+  padding: 0 15px;
   display: flex;
   gap: 10px;
   font-size: 16px;
   border-bottom: 1px solid rgb(202, 202, 202);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
 }
 
+#list span {
+  padding: 15px 0;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  border-bottom: 1px solid rgb(202, 202, 202);
+  justify-content: space-between;
+  padding: 15px;
+}
+
+#submit {
+  border: none;
+  background: none;
+  font-size: 22px;
+  color: rgb(117, 117, 117);
+}
+
 #add {
+  width: 100%;
   font-size: 16px;
   border: none;
-  border-bottom: 1px solid rgb(202, 202, 202);
-  padding: 15px;
   font-style: italic;
 }
 
 .dots {
   margin-left: auto;
-}
-
-.dots::after {
-  content: '\2807';
-  font-size: 25px;
   color: rgb(117, 117, 117);
+  font-size: 22px;
+  cursor: move;
 }
