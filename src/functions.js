@@ -1,3 +1,5 @@
+import { update } from './updates';
+
 let TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
 const TodoItemsV2 = TodoItems;
 
@@ -37,6 +39,7 @@ const removeItem = () => {
           data.index = i + 1;
         }
         storeData();
+        update();
       });
     }
   });
@@ -82,10 +85,11 @@ const modify = (num) => {
 const add = (description) => {
   const item = new Item(description);
   TodoItems.push(item);
+  storeData();
   display(item.index - 1);
   modify(item.index - 1);
   removeItem();
-  storeData();
+  update();
 };
 
 export {
