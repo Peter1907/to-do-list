@@ -2,7 +2,7 @@ import './style.css';
 import {
   display, add, modify, removeItem,
 } from './functions.js';
-import { update } from './updates';
+import { update } from './updates.js';
 
 const TodoItemsV2 = JSON.parse(localStorage.getItem('ToDoItems')) || [];
 if (TodoItemsV2.length > 0) {

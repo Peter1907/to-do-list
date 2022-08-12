@@ -1,4 +1,4 @@
-import { update } from './updates';
+import { update } from './updates.js';
 
 let TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
 const TodoItemsV2 = TodoItems;

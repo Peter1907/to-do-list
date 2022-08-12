@@ -1,24 +1,4 @@
-export { update };
-import { display } from './functions';
-
 let TodoItemsV3 = JSON.parse(localStorage.getItem('ToDoItems')) || [];
-
-const clearCompleted = document.getElementById('clear-completed');
-clearCompleted.addEventListener('click', () => {
-  TodoItemsV3 = JSON.parse(localStorage.getItem('ToDoItems'));
-  const completed = document.querySelectorAll('.completed');
-  completed.forEach((ele) => {
-    ele.remove();
-  });
-  TodoItemsV3 = TodoItemsV3.filter((obj) => !obj.completed);
-  for (let i = 0; i < TodoItemsV3.length; i += 1) {
-    const data = TodoItemsV3[i];
-    data.index = i + 1;
-  }
-  localStorage.setItem('ToDoItems', JSON.stringify(TodoItemsV3));
-  update();
-  console.log(JSON.parse(localStorage.getItem('ToDoItems')));
-});
 
 const update = () => {
   TodoItemsV3 = JSON.parse(localStorage.getItem('ToDoItems')) || [];
@@ -38,7 +18,22 @@ const update = () => {
       localStorage.setItem('ToDoItems', JSON.stringify(TodoItemsV3));
     });
   });
-}
+};
 
-export const TodoItemsV4 = TodoItemsV3.filter((obj) => !obj.completed);
-console.log(TodoItemsV4);
+const clearCompleted = document.getElementById('clear-completed');
+clearCompleted.addEventListener('click', () => {
+  TodoItemsV3 = JSON.parse(localStorage.getItem('ToDoItems'));
+  const completed = document.querySelectorAll('.completed');
+  completed.forEach((ele) => {
+    ele.remove();
+  });
+  TodoItemsV3 = TodoItemsV3.filter((obj) => !obj.completed);
+  for (let i = 0; i < TodoItemsV3.length; i += 1) {
+    const data = TodoItemsV3[i];
+    data.index = i + 1;
+  }
+  localStorage.setItem('ToDoItems', JSON.stringify(TodoItemsV3));
+  update();
+});
+
+export { update };
