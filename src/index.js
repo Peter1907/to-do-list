@@ -1,13 +1,18 @@
 import './style.css';
 import {
-  display, add, modify, TodoItemsV2, removeItem,
+  display, add, modify, removeItem,
 } from './functions.js';
+import { update } from './updates.js';
 
-for (let i = 0; i < TodoItemsV2.length; i += 1) {
-  display(i);
-  modify(i);
+const TodoItemsV2 = JSON.parse(localStorage.getItem('ToDoItems')) || [];
+if (TodoItemsV2.length > 0) {
+  for (let i = 0; i < TodoItemsV2.length; i += 1) {
+    display(i);
+    modify(i);
+  }
+  removeItem();
+  update();
 }
-removeItem();
 
 const input = document.getElementById('add');
 const submit = document.getElementById('submit');
