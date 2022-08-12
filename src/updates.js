@@ -36,4 +36,4 @@ clearCompleted.addEventListener('click', () => {
   update();
 });
 
-export default { update };
+export { update, clearCompleted };
