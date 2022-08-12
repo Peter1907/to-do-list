@@ -1,6 +1,6 @@
 let TodoItemsV3 = JSON.parse(localStorage.getItem('ToDoItems')) || [];
 
-export const update = () => {
+const update = () => {
   TodoItemsV3 = JSON.parse(localStorage.getItem('ToDoItems')) || [];
   const textValues = document.querySelectorAll('.element span');
   const boxes = document.querySelectorAll('.check-box');
@@ -35,3 +35,5 @@ clearCompleted.addEventListener('click', () => {
   localStorage.setItem('ToDoItems', JSON.stringify(TodoItemsV3));
   update();
 });
+
+export default { update };
