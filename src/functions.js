@@ -2,7 +2,7 @@ import { update } from './updates.js';
 
 let TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
 
-const list = document.getElementById('list');
+let list = document.getElementById('list');
 
 function setReference(listReference) {
   list = listReference;

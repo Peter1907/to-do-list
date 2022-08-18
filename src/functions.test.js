@@ -16,5 +16,14 @@ describe('Add & remove', () => {
 });
 
 describe('Test Modify & Checked', () => {
-  test
+  test('Modify', () => {
+    document.body.innerHTML = `<ul id="list"></ul>`;
+    let list = document.getElementById('list');
+    setReference(list);
+    const description = 'test';
+    add(description);
+    modify(0);
+    document.querySelector('.element').dblclick();
+    expect(document.querySelector('.element div').innerHTML).toBe('&#x1F5D1');
+  });
 });
