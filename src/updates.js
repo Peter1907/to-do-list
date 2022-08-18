@@ -1,3 +1,4 @@
+/*eslint import/no-cycle: [2, { ignoreExternal: true }]*/
 import { display, modify } from './functions.js';
 
 let TodoItemsV3 = JSON.parse(localStorage.getItem('ToDoItems')) || [];
@@ -14,11 +15,10 @@ const update = () => {
       if (data.completed) {
         textValues[id].style.color = 'rgb(117, 117, 117)';
         textValues[id].style.textDecoration = 'line-through';
-      }
-      else {
+      } else {
         textValues[id].style.color = 'rgb(0, 0, 0)';
         textValues[id].style.textDecoration = 'none';
-      }
+        }
       localStorage.setItem('ToDoItems', JSON.stringify(TodoItemsV3));
     });
   });
@@ -41,7 +41,7 @@ const clearCompleted = () => {
       modify(i);
     };
     update();
-  });
+  })
 };
 
 export { update, clearCompleted };

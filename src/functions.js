@@ -1,3 +1,4 @@
+/*eslint import/no-cycle: [2, { ignoreExternal: true }]*/
 import { update } from './updates.js';
 
 let TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
@@ -35,7 +36,7 @@ const storeData = () => {
 const resetLocalStorage = () => {
   TodoItems = [];
   localStorage.setItem('ToDoItems', JSON.stringify(TodoItems));
-}
+};
 
 const removeItem = () => {
   const rmIcons = document.querySelectorAll('.element div');
@@ -57,7 +58,7 @@ const removeItem = () => {
 
 const modify = (num) => {
   const items = list.querySelectorAll('.element span');
-  let elements = list.querySelectorAll('.element');
+  const elements = list.querySelectorAll('.element');
   items[num].addEventListener('click', () => {
     items.forEach((ele, id) => {
       ele.addEventListener('keyup', (e) => {

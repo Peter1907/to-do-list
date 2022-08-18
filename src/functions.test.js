@@ -1,13 +1,14 @@
 /**
  * @jest-environment jsdom
  */
+/* eslint-disable*/
 
-import { modify, display, add, removeItem, setReference, resetLocalStorage, storeData } from './functions.js';
+import { add, setReference, resetLocalStorage } from './functions.js';
 import { update, clearCompleted } from './updates.js';
 
 describe('Test Add', () => {
   test('Add', () => {
-    document.body.innerHTML = `<ul id="list"></ul>`;
+    document.body.innerHTML = '<ul id="list"></ul>';
     let list = document.getElementById('list');
     setReference(list);
     const description = 'test';
