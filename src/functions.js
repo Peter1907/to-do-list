@@ -96,5 +96,5 @@ const add = (description) => {
 };
 
 export {
-  display, storeData, add, removeItem, modify,
+  display, storeData, add, removeItem, modify, list,
 };
