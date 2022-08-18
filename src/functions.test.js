@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { modify, display, add, removeItem, setReference } from './functions.js';
+import { modify, display, add, removeItem, setReference, resetLocalStorage } from './functions.js';
 
 describe('Add & remove', () => {
   test('Add', () => {
@@ -12,19 +12,18 @@ describe('Add & remove', () => {
     const description = 'test';
     add(description);
     add(description);
-    //console.log(document.body.innerHTML);
     expect(document.getElementsByTagName('li').length).toBe(2);
   });
 });
 
 describe('Test Modify & Checked', () => {
   test('Modify', () => {
+    resetLocalStorage();
     document.body.innerHTML = `<ul id="list"></ul>`;
     let list = document.getElementById('list');
     setReference(list);
     const description = 'test';
     add(description);
-    console.log(document.body.innerHTML);
     modify(0);
     const element = list.querySelector('.element');
 
@@ -34,8 +33,6 @@ describe('Test Modify & Checked', () => {
       'cancelable': true
     });
     element.dispatchEvent(event);
-    console.log(document.body.innerHTML);
-
     expect(document.querySelector('.element div').className).toBe('bin');
   });
 });

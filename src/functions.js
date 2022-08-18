@@ -32,6 +32,11 @@ const storeData = () => {
   localStorage.setItem('ToDoItems', JSON.stringify(TodoItems));
 };
 
+const resetLocalStorage = () => {
+  TodoItems = [];
+  localStorage.setItem('ToDoItems', JSON.stringify(TodoItems));
+}
+
 const removeItem = () => {
   const rmIcons = document.querySelectorAll('.element div');
   rmIcons.forEach((ele, id) => {
@@ -101,5 +106,5 @@ const add = (description) => {
 };
 
 export {
-  display, storeData, add, removeItem, modify, setReference
+  display, storeData, add, removeItem, modify, setReference, resetLocalStorage,
 };
