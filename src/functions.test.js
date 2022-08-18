@@ -11,7 +11,9 @@ describe('Add & remove', () => {
     setReference(list);
     const description = 'test';
     add(description);
-    expect(document.getElementsByTagName('li').length).toBe(1);
+    add(description);
+    //console.log(document.body.innerHTML);
+    expect(document.getElementsByTagName('li').length).toBe(2);
   });
 });
 
@@ -22,8 +24,18 @@ describe('Test Modify & Checked', () => {
     setReference(list);
     const description = 'test';
     add(description);
+    console.log(document.body.innerHTML);
     modify(0);
-    document.querySelector('.element').dblclick();
-    expect(document.querySelector('.element div').innerHTML).toBe('&#x1F5D1');
+    const element = list.querySelector('.element');
+
+    let event = new MouseEvent('dblclick', {
+      'view': window,
+      'bubbles': true,
+      'cancelable': true
+    });
+    element.dispatchEvent(event);
+    console.log(document.body.innerHTML);
+
+    expect(document.querySelector('.element div').className).toBe('bin');
   });
 });

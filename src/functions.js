@@ -51,8 +51,8 @@ const removeItem = () => {
 };
 
 const modify = (num) => {
-  const items = document.querySelectorAll('.element span');
-  let elements = document.querySelectorAll('.element');
+  const items = list.querySelectorAll('.element span');
+  let elements = list.querySelectorAll('.element');
   elements[num].addEventListener('click', () => {
     items.forEach((ele, id) => {
       ele.addEventListener('keyup', (e) => {
