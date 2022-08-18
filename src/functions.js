@@ -1,12 +1,12 @@
 import { update } from './updates.js';
 
 let TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
-const TodoItemsV2 = TodoItems;
 
 const list = document.getElementById('list');
 const display = (i) => {
   const item = document.createElement('li');
   item.classList.add('element');
+  TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
   const data = TodoItems[i];
   item.innerHTML = `<input type="checkbox" class ="check-box ${data.index}">
   <span contenteditable="true">${data.description}</span>
@@ -16,6 +16,7 @@ const display = (i) => {
 
 class Item {
   constructor(description) {
+    TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
     this.description = description;
     this.completed = false;
     this.index = TodoItems.length + 1;
@@ -24,7 +25,6 @@ class Item {
 
 const storeData = () => {
   localStorage.setItem('ToDoItems', JSON.stringify(TodoItems));
-  TodoItems = JSON.parse(localStorage.getItem('ToDoItems'));
 };
 
 const removeItem = () => {
@@ -47,7 +47,16 @@ const removeItem = () => {
 
 const modify = (num) => {
   const items = document.querySelectorAll('.element span');
-  const elements = document.querySelectorAll('.element');
+  let elements = document.querySelectorAll('.element');
+  elements[num].addEventListener('click', () => {
+    items.forEach((ele, id) => {
+      ele.addEventListener('keyup', (e) => {
+        const data = TodoItems[id];
+        data.description = e.target.innerHTML;
+        storeData();
+      });
+    });
+  });
   elements[num].addEventListener('dblclick', (event) => {
     event.stopPropagation();
     for (let i = 0; i < items.length; i += 1) {
@@ -64,13 +73,6 @@ const modify = (num) => {
     rmIcon.style.cursor = 'pointer';
     removeItem();
   });
-  items.forEach((ele, id) => {
-    ele.addEventListener('keyup', (e) => {
-      const data = TodoItems[id];
-      data.description = e.target.innerHTML;
-      storeData();
-    });
-  });
   window.addEventListener('click', () => {
     for (let i = 0; i < items.length; i += 1) {
       items[i].parentElement.style.background = 'none';
@@ -84,14 +86,15 @@ const modify = (num) => {
 
 const add = (description) => {
   const item = new Item(description);
+  TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
   TodoItems.push(item);
   storeData();
-  display(item.index - 1);
-  modify(item.index - 1);
+  display(TodoItems.length - 1);
+  modify(TodoItems.length - 1);
   removeItem();
   update();
 };
 
 export {
-  display, storeData, add, removeItem, modify, TodoItemsV2,
+  display, storeData, add, removeItem, modify,
 };
