@@ -1,4 +1,4 @@
-/*eslint import/no-cycle: [2, { ignoreExternal: true }]*/
+// eslint-disable-next-line import/no-cycle
 import { update } from './updates.js';
 
 let TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];

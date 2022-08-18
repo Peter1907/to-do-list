@@ -5,7 +5,8 @@
 
 import { add, setReference, resetLocalStorage } from './functions.js';
 import { update, clearCompleted } from './updates.js';
-
+// We only added the add method to check if it works.
+// And we worked on the other repository to add the other methods.
 describe('Test Add', () => {
   test('Add', () => {
     document.body.innerHTML = '<ul id="list"></ul>';
