@@ -3,6 +3,7 @@
  */
 
 import { modify, display, add, removeItem, setReference, resetLocalStorage } from './functions.js';
+import { update } from './updates.js';
 
 describe('Add & remove', () => {
   test('Add', () => {
@@ -34,5 +35,21 @@ describe('Test Modify & Checked', () => {
     });
     element.dispatchEvent(event);
     expect(document.querySelector('.element div').className).toBe('bin');
+  });
+
+  test('Checked', () => {
+    resetLocalStorage();
+    document.body.innerHTML = `<ul id="list"></ul>`;
+    let list = document.getElementById('list');
+    setReference(list);
+    const description = 'test';
+    add(description);
+    add(description);
+    add(description);
+    update();
+    const elements = list.querySelectorAll('.element input');
+    elements[0].click();
+    expect(JSON.parse(localStorage.getItem('ToDoItems'))[0].completed).toBe(true);
+    expect(JSON.parse(localStorage.getItem('ToDoItems'))[1].completed).toBe(false);
   });
 });
