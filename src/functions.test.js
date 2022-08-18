@@ -25,26 +25,12 @@ describe('Test Modify', () => {
     setReference(list);
     const description = 'test';
     add(description);
-    modify(0);
-    const element = list.querySelector('.element');
+    //modify(0);    //the modify function is called automatically inside the method add
     const span = list.querySelector('.element span');
 
-    let event = new MouseEvent('dblclick', {
-      'view': window,
-      'bubbles': true,
-      'cancelable': true
-    });
-    element.dispatchEvent(event);
+    // to be able to edit the user must click the span element
     span.click();
-    span.dispatchEvent(new KeyboardEvent('keydown', {
-      key: "e",
-      keyCode: 69, 
-      code: "KeyE", 
-      which: 69,
-      shiftKey: false, 
-      ctrlKey: false,  
-      metaKey: false   
-  }));
+    // as soon as the user release a key the storage get updated
     span.dispatchEvent(new KeyboardEvent('keyup', {
       key: "e",
       keyCode: 69, 
@@ -53,9 +39,9 @@ describe('Test Modify', () => {
       shiftKey: false, 
       ctrlKey: false,  
       metaKey: false   
-  }));  
-    expect(JSON.parse(localStorage.getItem('ToDoItems'))[0].description).toBe('teste');
-    expect(document.querySelector('.element div').className).toBe('bin');
+  }));
+    // cheking if the storage got updated correctly it should contain the key test + the pressed key
+    expect(JSON.parse(localStorage.getItem('ToDoItems'))[0].description).toBe('teste');  
   });
 
   test('Checked', () => {
