@@ -41,7 +41,7 @@ const clearCompleted = () => {
       modify(i);
     };
     update();
-  });
+  })
 };
 
 export { update, clearCompleted };
