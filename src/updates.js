@@ -18,7 +18,7 @@ const update = () => {
       } else {
         textValues[id].style.color = 'rgb(0, 0, 0)';
         textValues[id].style.textDecoration = 'none';
-        }
+      }
       localStorage.setItem('ToDoItems', JSON.stringify(TodoItemsV3));
     });
   });
