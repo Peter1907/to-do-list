@@ -39,9 +39,9 @@ const clearCompleted = () => {
     for (let i = 0; i < TodoItemsV3.length; i += 1) {
       display(i);
       modify(i);
-    };
+    }
     update();
-  })
+  });
 };
 
 export { update, clearCompleted };
