@@ -3,9 +3,9 @@
  */
 
 import { modify, display, add, removeItem, setReference, resetLocalStorage } from './functions.js';
-import { update } from './updates.js';
+import { update, clearCompleted } from './updates.js';
 
-describe('Add & remove', () => {
+describe('Test Add', () => {
   test('Add', () => {
     document.body.innerHTML = `<ul id="list"></ul>`;
     let list = document.getElementById('list');
@@ -17,7 +17,7 @@ describe('Add & remove', () => {
   });
 });
 
-describe('Test Modify & Checked', () => {
+describe('Test Modify', () => {
   test('Modify', () => {
     resetLocalStorage();
     document.body.innerHTML = `<ul id="list"></ul>`;
@@ -52,4 +52,33 @@ describe('Test Modify & Checked', () => {
     expect(JSON.parse(localStorage.getItem('ToDoItems'))[0].completed).toBe(true);
     expect(JSON.parse(localStorage.getItem('ToDoItems'))[1].completed).toBe(false);
   });
+
+  test('Clear all', () => {
+    resetLocalStorage();
+    document.body.innerHTML = `
+    <ul id="list"></ul>
+    <p id="clear-completed">Clear all completed</p>
+    `;
+    let list = document.getElementById('list');
+    let clearBtn = document.getElementById('clear-completed');
+    setReference(list);
+    const description = 'test';
+    add(description);
+    add(description);
+    add(description);
+    update();
+    const elements = list.querySelectorAll('.element input');
+    // dispatch a click event in the box to become true the completed and then this task shall be deleted by the clearAll metod
+    elements[0].click();
+
+    clearCompleted();
+    clearBtn.click();
+    
+    // checking the localStorage demostrtes that the clearCompleted metod is working.
+    expect(JSON.parse(localStorage.getItem('ToDoItems')).length).toBe(2);
+    // checking the dom there should be 2 items
+    expect(document.getElementsByTagName('li').length).not.toBe(3);
+  });
 });
+
+
