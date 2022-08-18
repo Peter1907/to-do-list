@@ -27,6 +27,7 @@ describe('Test Modify', () => {
     add(description);
     modify(0);
     const element = list.querySelector('.element');
+    const span = list.querySelector('.element span');
 
     let event = new MouseEvent('dblclick', {
       'view': window,
@@ -34,6 +35,26 @@ describe('Test Modify', () => {
       'cancelable': true
     });
     element.dispatchEvent(event);
+    span.click();
+    span.dispatchEvent(new KeyboardEvent('keydown', {
+      key: "e",
+      keyCode: 69, 
+      code: "KeyE", 
+      which: 69,
+      shiftKey: false, 
+      ctrlKey: false,  
+      metaKey: false   
+  }));
+    span.dispatchEvent(new KeyboardEvent('keyup', {
+      key: "e",
+      keyCode: 69, 
+      code: "KeyE", 
+      which: 69,
+      shiftKey: false, 
+      ctrlKey: false,  
+      metaKey: false   
+  }));  
+    expect(JSON.parse(localStorage.getItem('ToDoItems'))[0].description).toBe('teste');
     expect(document.querySelector('.element div').className).toBe('bin');
   });
 
