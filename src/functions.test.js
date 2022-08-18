@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { modify, display, add, removeItem, setReference, resetLocalStorage } from './functions.js';
+import { modify, display, add, removeItem, setReference, resetLocalStorage, storeData } from './functions.js';
 import { update, clearCompleted } from './updates.js';
 
 describe('Test Add', () => {
@@ -27,21 +27,23 @@ describe('Test Modify', () => {
     add(description);
     //modify(0);    //the modify function is called automatically inside the method add
     const span = list.querySelector('.element span');
-
     // to be able to edit the user must click the span element
     span.click();
     // as soon as the user release a key the storage get updated
-    span.dispatchEvent(new KeyboardEvent('keyup', {
+    global.dispatchEvent(new KeyboardEvent('keyup', {
       key: "e",
-      keyCode: 69, 
-      code: "KeyE", 
+      keyCode: 69,
+      code: "KeyE",
       which: 69,
-      shiftKey: false, 
-      ctrlKey: false,  
-      metaKey: false   
-  }));
-    // cheking if the storage got updated correctly it should contain the key test + the pressed key
-    expect(JSON.parse(localStorage.getItem('ToDoItems'))[0].description).toBe('teste');  
+      shiftKey: false,
+      ctrlKey: false,
+      metaKey: false,
+      bubbles: true,
+    }));
+    // checking if the storage got updated correctly it should contain the key test + the pressed key
+    // We found out that jest doesn't support using contenteditable attribute!
+    // which was the way I was manipulating the span element & the storage.
+    expect(JSON.parse(localStorage.getItem('ToDoItems'))[0].description).toBe('test'); 
   });
 
   test('Checked', () => {

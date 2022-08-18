@@ -62,7 +62,6 @@ const modify = (num) => {
     items.forEach((ele, id) => {
       ele.addEventListener('keyup', (e) => {
         const data = TodoItems[id];
-        e.target.innerHTML += e.key;
         data.description = e.target.innerHTML;
         storeData();
       });
