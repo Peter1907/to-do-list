@@ -3,6 +3,11 @@ import { update } from './updates.js';
 let TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
 
 const list = document.getElementById('list');
+
+function setReference(listReference) {
+  list = listReference;
+}
+
 const display = (i) => {
   const item = document.createElement('li');
   item.classList.add('element');
@@ -96,5 +101,5 @@ const add = (description) => {
 };
 
 export {
-  display, storeData, add, removeItem, modify, list,
+  display, storeData, add, removeItem, modify, setReference
 };
