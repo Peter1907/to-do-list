@@ -8,7 +8,7 @@ const display = (i) => {
   item.classList.add('element');
   TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
   const data = TodoItems[i];
-  item.innerHTML = `<input type="checkbox" class ="check-box ${data.index}">
+  item.innerHTML = `<input type="checkbox" class ="check-box">
   <span contenteditable="true">${data.description}</span>
   <div class="dots">&#8942;</div>`;
   list.appendChild(item);

@@ -24,22 +24,24 @@ const update = () => {
   });
 };
 
-const clearCompleted = document.getElementById('clear-completed');
-clearCompleted.addEventListener('click', () => {
-  TodoItemsV3 = JSON.parse(localStorage.getItem('ToDoItems'));
-  TodoItemsV3 = TodoItemsV3.filter((obj) => !obj.completed);
-  for (let i = 0; i < TodoItemsV3.length; i += 1) {
-    const data = TodoItemsV3[i];
-    data.index = i + 1;
-  }
-  localStorage.setItem('ToDoItems', JSON.stringify(TodoItemsV3));
-  const list = document.getElementById('list');
-  list.innerHTML = '';
-  for (let i = 0; i < TodoItemsV3.length; i += 1) {
-    display(i);
-    modify(i);
-  };
-  update();
-});
+const clearCompleted = () => {
+  const clearCompleted = document.getElementById('clear-completed');
+  clearCompleted.addEventListener('click', () => {
+    TodoItemsV3 = JSON.parse(localStorage.getItem('ToDoItems'));
+    TodoItemsV3 = TodoItemsV3.filter((obj) => !obj.completed);
+    for (let i = 0; i < TodoItemsV3.length; i += 1) {
+      const data = TodoItemsV3[i];
+      data.index = i + 1;
+    }
+    localStorage.setItem('ToDoItems', JSON.stringify(TodoItemsV3));
+    const list = document.getElementById('list');
+    list.innerHTML = '';
+    for (let i = 0; i < TodoItemsV3.length; i += 1) {
+      display(i);
+      modify(i);
+    };
+    update();
+  });
+};
 
 export { update, clearCompleted };

@@ -2,7 +2,7 @@ import './style.css';
 import {
   display, add, modify, removeItem,
 } from './functions.js';
-import { update } from './updates.js';
+import { update, clearCompleted } from './updates.js';
 
 const TodoItemsV2 = JSON.parse(localStorage.getItem('ToDoItems')) || [];
 if (TodoItemsV2.length > 0) {
@@ -13,6 +13,7 @@ if (TodoItemsV2.length > 0) {
   removeItem();
   update();
 }
+clearCompleted();
 
 const input = document.getElementById('add');
 const submit = document.getElementById('submit');
