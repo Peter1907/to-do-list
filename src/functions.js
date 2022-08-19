@@ -1,8 +1,14 @@
+// eslint-disable-next-line import/no-cycle
 import { update } from './updates.js';
 
 let TodoItems = JSON.parse(localStorage.getItem('ToDoItems')) || [];
 
-const list = document.getElementById('list');
+let list = document.getElementById('list');
+
+function setReference(listReference) {
+  list = listReference;
+}
+
 const display = (i) => {
   const item = document.createElement('li');
   item.classList.add('element');
@@ -27,6 +33,11 @@ const storeData = () => {
   localStorage.setItem('ToDoItems', JSON.stringify(TodoItems));
 };
 
+const resetLocalStorage = () => {
+  TodoItems = [];
+  localStorage.setItem('ToDoItems', JSON.stringify(TodoItems));
+};
+
 const removeItem = () => {
   const rmIcons = document.querySelectorAll('.element div');
   rmIcons.forEach((ele, id) => {
@@ -46,9 +57,9 @@ const removeItem = () => {
 };
 
 const modify = (num) => {
-  const items = document.querySelectorAll('.element span');
-  let elements = document.querySelectorAll('.element');
-  elements[num].addEventListener('click', () => {
+  const items = list.querySelectorAll('.element span');
+  const elements = list.querySelectorAll('.element');
+  items[num].addEventListener('click', () => {
     items.forEach((ele, id) => {
       ele.addEventListener('keyup', (e) => {
         const data = TodoItems[id];
@@ -96,5 +107,5 @@ const add = (description) => {
 };
 
 export {
-  display, storeData, add, removeItem, modify,
+  display, storeData, add, removeItem, modify, setReference, resetLocalStorage,
 };

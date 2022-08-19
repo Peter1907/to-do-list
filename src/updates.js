@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { display, modify } from './functions.js';
 
 let TodoItemsV3 = JSON.parse(localStorage.getItem('ToDoItems')) || [];
@@ -14,8 +15,7 @@ const update = () => {
       if (data.completed) {
         textValues[id].style.color = 'rgb(117, 117, 117)';
         textValues[id].style.textDecoration = 'line-through';
-      }
-      else {
+      } else {
         textValues[id].style.color = 'rgb(0, 0, 0)';
         textValues[id].style.textDecoration = 'none';
       }
